@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Watermelon Shop</title>
+  <style>
+#loader {position: fixed;width: 100%;height: 100vh;background: linear-gradient(135deg, #e91e63, #ff5722);z-index: 9999;display: flex;flex-direction: column;justify-content: center;align-items: center;color: white;}
+.big-watermelon {font-size: 250px;animation: pulse 1s infinite;}
+@keyframes pulse {0%, 100% { transform: scale(1); }50% { transform: scale(1.2); }}
+body {font-family: Arial;background: #f5f5f5 url('watermelon-bg.jpg');background-size: cover;background-attachment: fixed;margin: 0;}
+header {background: rgba(233, 30, 99, 0.95);color: white;padding: 15px;display: flex;justify-content: space-between;align-items: center;position: sticky;top: 0;}
+.cart {background: white;color: #e91e63;padding: 8px 15px;border-radius: 20px;font-weight: bold;cursor: pointer;}
+.shop {display: grid;grid-template-columns: repeat(4, 1fr);gap: 20px;max-width: 1200px;margin: 20px auto;padding: 20px;}
+.card {border: 1px solid #ddd;border-radius: 12px;padding: 10px;text-align: center;background: #dcdcdc;}
+.card img {width: 100%;height: 430px;object-fit: cover;border-radius: 8px;}
+.price {color: #e91e63;font-size: 20px;font-weight: bold;margin: 10px 0;}
+.btn {background: #e91e63;color: white;border: none;padding: 10px;width: 100%;border-radius: 6px;cursor: pointer;}
+.filters {display: flex;gap: 10px;padding: 10px;justify-content: center;background: #fff;flex-wrap: wrap;}
+.filters button {padding: 8px 15px;border: 2px solid #e91e63;background: white;color: #e91e63;border-radius: 20px;cursor: pointer;font-weight: bold;}
+.filters button.active {background: #e91e63;color: white;}
+  .search-box {
+      padding: 15px;
+      background: #fff;
+      text-align: center;
+  }
+.search-box input {
+      width: 90%;
+      max-width: 500px;
+      padding: 12px 20px;
+      border: 2px solid #e91e63;
+      border-radius: 25px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+  }
+.search-box input:focus {
+      border-color: #c2185b;
+      box-shadow: 0 0 8px rgba(233, 30, 99, 0.3);
+  }
+    h3 { font-family: "Fira Code", "Courier New", monospace; font-weight: bold; color:darkgreen; font-size:20px; background-color: #bebebe; padding:22px; border-radius:5px; margin:5px;}
+    p { font-family: "Times New Roman", Times, serif; color: #686868; }
+    
+@media (max-width: 992px) {.shop { grid-template-columns: repeat(2, 1fr); }}
+@media (max-width: 600px) {.shop { grid-template-columns: 1fr; }}
+  </style>
+</head>
+<body>
+<div id="loader"><div class="big-watermelon">🍉</div><h2>Loading...</h2></div>
+<header><h2>🛒 🍉 Watermelon Shop </h2><div class="cart" onclick="openCart()">Cart: <span id="cartCount">0</span></div></header>
+
+  <div class="filters button">
+    <button class="active" onclick="filterCat('all', this)">All</button>
+    <button onclick="filterCat('juice', this)">Juices</button>
+    <button onclick="filterCat('icecream', this)">Ice-Cream</button>
+    <button onclick="filterCat('candy', this)">Candy</button>
+    <button onclick="filterCat('chips', this)">Chips</button>
+    <button onclick="filterCat('chocolate', this)">Chocolate</button>
+    <button onclick="filterCat('cookies', this)">Cookies</button>
+    <button onclick="filterCat('seeds', this)">Seeds</button>
+    <button onclick="filterCat('skincare', this)">Skincare</button>
+  </div>
+<div class="search-box">
+      <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="🔍 Search: Kitkat, Oreo, Gum, Chips...">
+  </div>
+<div class="shop"
+
+  <!-- JUICES - 13 -->
+  <div class="card" data-category="juice"><img src="ENERGY_WATERMELON.png"><h3>Unwell Watermelon Drink</h3><p>Refreshing energy drink with real watermelon flavor. Sugar free.</p><p class="sale">🔥 20% OFF - Limited Time</p><p class="price" data-price="2.99">$2.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="watermelon-monkey.jpeg"><h3>Blue Monkey</h3><p>Made with real fruit bluemonkey.</p><p class="sale">🔥 New Arrival</p><p class="price" data-price="3.49"><s>$4.49</s>$3.49</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="watermelon-orignal.jpeg"><h3>Watermelon ORIGINAL</h3><p>Watermelon original drink sugar free 500ml.</p><p class="sale">🔥 Best Seller</p><p class="price" data-price="2.99">$2.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="Watermelon-pineapple.jpeg"><h3>Watermelon PINEAPPLE</h3><p>Watermelon Pineapple flav 500ml.</p><p class="sale">🔥 10% OFF</p><p class="price" data-price="2.99">$2.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="watermelon-tropical.jpeg"><h3>Watermelon Tropical</h3><p>Rita Watermelon tropical 100% natural juice 600ml.</p><p class="sale">🔥 10% OFF</p><p class="price" data-price="4.99">$4.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="watermelon-limead.png"><h3>Watermelon Limead</h3><p>Watermelon Limead fresh juice 500ml.</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="2.99">$2.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="watermelon-juice.jpg"><h3>Watermelon Juice</h3><p>Watermelon Juice All natural tast 500ml.</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="4.99">$4.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="Watermelon-cold.jpg"><h3>wonder watermelon</h3><p>wonder watermelon cold pressed 250ml</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="4.99">$4.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="wtr4.jpeg"><h3>Minute Maid</h3><p>Minute maid watermelon 1L</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="5.99">$5.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="wtr5.jpeg"><h3>Caprisun watermelon</h3><p>Taste they love goodness you want</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="4.49">$4.49</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="wrt3.jpeg"><h3>Arizona</h3><p>watermelon fruit juice cocktail drink mix</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="12.99">$12.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="wtr6.jpg"><h3>Lounge</h3><p>watermelon flavoured fruit syrup</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="6.49">$6.49</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="juice"><img src="ice9.jpeg"><h3>COTTON CANDY</h3><p>Premium watermelon cotton candy</p><p class="sale">🔥 New</p><p class="price" data-price="9.99">$9.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+
+  <!-- ICE-CREAM - 8 -->
+  <div class="card" data-category="icecream"><img src="ice1.jpeg"><h3>Jolly rancher</h3><p>jolly rancher watermelon ice-creem 1L</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="14.99">$14.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="icecream"><img src="ice2.jpeg"><h3>Watermelon Slice</h3><p>beat the init with selecta fruit slicer</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="3.99">$3.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="icecream"><img src="ice3.jpg"><h3>Jolly pops</h3><p>Freezer pops jolly rancher</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="2.99">$2.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="icecream"><img src="ice4.jpeg"><h3>Blue bunny</h3><p>watermelon Jolly Rncger ice-creem</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="13.99">$13.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="icecream"><img src="ice5.jpeg"><h3>Delux SHERBET</h3><p>watermelon chocolatechip lowfat icec-reem 1.4L</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="18.99">$18.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="icecream"><img src="ice6.jpg"><h3>Jonny POPS</h3><p>watermelon organic pops</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="3.49">$3.49</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="icecream"><img src="ice7.jpeg"><h3>Rowntrees pops</h3><p>watermelon rowntree pops 4pak</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="9.99">$9.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="icecream"><img src="ice8.jpeg"><h3>Nestle BAR</h3><p>Less then 99 calories per bar 6BAR</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="19.99">$19.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+
+  <!-- CHOCOLATE - 11 -->
+  <div class="card" data-category="chocolate"><img src="ch1.jpeg"><h3>KITKAT</h3><p>kitkat watermelon Flavour</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="9.99">$9.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch2.jpeg"><h3>CADBWRY</h3><p>watermelon cadbwry dairy milk MCoBeauty</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="8.99">$8.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch3.jpeg"><h3>JUNGLEGOLD BALI</h3><p>watermelon junglegold bali creamy 70g</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="12.99">$12.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch4.jpeg"><h3>CHOCO CRAFT</h3><p>Premium belgium watermelon chocolate 80g</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="18.99">$18.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch5.png"><h3>BIANCA</h3><p>summer party watermelon chocolate</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="12.99">$12.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch6.jpeg"><h3>SERENITY</h3><p>welcome baby serenity chocolate 1.55 oz</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="12.99">$12.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch7.jpg"><h3>Wasser</h3><p>wasser milka mit kinstereffekt 25g</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="5.99">$5.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch8.jpg"><h3>KitKat MINI</h3><p>nestle watermelon kitkat mini</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="9.99">$9.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch9.jpeg"><h3>KitKat pack</h3><p>watermelon mini kitkat pack</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="17.99">$17.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch10.jpeg"><h3>Choco PN</h3><p>watermelon chocolate coated pie</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="14.99">$14.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chocolate"><img src="ch11.jpeg"><h3>NUTS</h3><p>watermelon taste whole nuts</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="12.99">$12.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+
+  <!-- CANDY + COOKIES - 4 -->
+  <div class="card" data-category="candy"><img src="ch12.jpeg"><h3>GELIQI COTTON CANDY</h3><p>kiwi watermelon cotton candy</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="1.99">$1.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="co7.jpg"><h3>Cookies</h3><p>watermelon Cookies</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="2.49">$2.49</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="cookies"><img src="co1.jpeg"><h3>Water Melon ChocoChip</h3><p>Mr Jho watermelon cookies</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="11.99">$11.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="cookies"><img src="co2.png"><h3>Watermelon Cookies</h3><p>Soft baked watermelon cookies</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="11.99">$11.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="cookies"><img src="co3.jpeg"><h3>LOFTHOUSE</h3><p>watermelon mini frosted sugar cookies</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="13.99">$13.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="cookies"><img src="co4.jpeg"><h3>OREO</h3><p>watermelon oreo limited edition 432g</p><p class="sale">🔥 5% OFF</p><p class="price" data-price="12.99">$12.99</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+
+<!-- ========== OLD 38 CARDS END ========== -->
+ 
+  <!-- ========== NEW 44 CARDS START ========== -->
+
+  <!-- CANDY/GUM - 21 -->
+  <div class="card" data-category="candy"><img src="1.jpg"><h3>Watermelon DOTS Candy</h3><p>Sweet chewy candy</p><p class="price" data-price="1.25">$1.25</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="2.jpg"><h3>Airheads Watermelon Gum</h3><p>Fruity taffy gum</p><p class="price" data-price="0.75">$0.75</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="3.jpg"><h3>Ice Breakers Kiwi</h3><p>Cooling mints</p><p class="price" data-price="1.60">$1.60</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="4.jpg"><h3>PUR Gum</h3><p>Xylitol gum</p><p class="price" data-price="1.80">$1.80</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="5.jpg"><h3>LOTTE XYLITOL</h3><p>Korean gum</p><p class="price" data-price="1.45">$1.45</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="6.jpg"><h3>FINI Fizzy Gum</h3><p>Sour gum</p><p class="price" data-price="0.90">$0.90</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="7.jpg"><h3>Fusion Jam Gum</h3><p>Jam filled</p><p class="price" data-price="1.10">$1.10</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="8.png"><h3>Wrigley's 3 Pack</h3><p>Sugar free</p><p class="price" data-price="2.15">$2.15</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="9.jpg"><h3>Wrigley's 15 Sticks</h3><p>Long flavor</p><p class="price" data-price="1.25">$1.25</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="10.jpg"><h3>Wrigley's 30 Box</h3><p>Bulk pack</p><p class="price" data-price="10.00">$10.00</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="11.jpg"><h3>Trident Twist</h3><p>Sugar free</p><p class="price" data-price="1.95">$1.95</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="12.jpg"><h3>Mentos Fresh</h3><p>Breath gum</p><p class="price" data-price="1.15">$1.15</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="13.jpg"><h3>MINT MINT</h3><p>Mini candy</p><p class="price" data-price="0.65">$0.65</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="14.jpg"><h3>Play More Candy</h3><p>Fresh candy</p><p class="price" data-price="0.80">$0.80</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="15.jpg"><h3>Clorets Freeze</h3><p>Sugar free mints</p><p class="price" data-price="1.35">$1.35</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="16.jpg"><h3>HORUYUAN Chew</h3><p>Soft candy</p><p class="price" data-price="0.55">$0.55</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="17.png"><h3>HARIBO Gummi</h3><p>Fruity gummy</p><p class="price" data-price="1.70">$1.70</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="18.jpg"><h3>Candy Break Slices</h3><p>Sour slices</p><p class="price" data-price="1.50">$1.50</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="19.jpg"><h3>VITAL Lollipop</h3><p>Sweet lolly</p><p class="price" data-price="0.35">$0.35</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="20.jpg"><h3>Jo Sour Bar</h3><p>Sour bar</p><p class="price" data-price="0.95">$0.95</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="candy"><img src="21.jpg"><h3>Candyland Jelly</h3><p>Soft jelly</p><p class="price" data-price="0.20">$0.20</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+
+  <!-- CHIPS - 11 -->
+  <div class="card" data-category="chips"><img src="22.jpg"><h3>Apache Corn Sticks</h3><p>Crunchy sticks</p><p class="price" data-price="0.55">$0.55</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="23.jpg"><h3>Doritos Chopps</h3><p>Spicy chips</p><p class="price" data-price="1.45">$1.45</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="24.jpg"><h3>Fritos Corn Chips</h3><p>Classic chips</p><p class="price" data-price="1.35">$1.35</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="25.jpg"><h3>SPUDS Vinegar</h3><p>Potato chips</p><p class="price" data-price="1.60">$1.60</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="26.jpg"><h3>Nim's Crisps</h3><p>Fruit crisps</p><p class="price" data-price="2.30">$2.30</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="27.jpg"><h3>Diya Dried Chips</h3><p>Healthy chips</p><p class="price" data-price="2.50">$2.50</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="28.jpg"><h3>NSI Organic</h3><p>Organic chips</p><p class="price" data-price="2.70">$2.70</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="29.jpg"><h3>H&B Chips</h3><p>Crispy chips</p><p class="price" data-price="2.15">$2.15</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="30.jpg"><h3>Dutch Crunch</h3><p>Jalapeno chips</p><p class="price" data-price="1.80">$1.80</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="31.jpg"><h3>Lay's Grilled</h3><p>Grilled chips</p><p class="price" data-price="1.25">$1.25</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="chips"><img src="32.jpg"><h3>Lay's Watermelon</h3><p>Classic lays</p><p class="price" data-price="1.25">$1.25</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+
+  <!-- OTHER - 12 -->
+  <div class="card" data-category="seeds"><img src="33.jpg"><h3>crispy dried Watermelon</h3><p>Healthy</p><p class="price" data-price="3.20">$3.20</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="powder"><img src="34.jpg"><h3>Watermelon Powder</h3><p>Food powder</p><p class="price" data-price="4.30">$4.30</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="jam"><img src="35.jpg"><h3>Watermelon Preserve</h3><p>Fruit jam</p><p class="price" data-price="3.95">$3.95</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="oil"><img src="p5.jpg"><h3>Watermelon Oil</h3><p>Flavor oil</p><p class="price" data-price="2.85">$2.85</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="skincare"><img src="p2.jpg"><h3>Glow Toner</h3><p>Pore toner</p><p class="price" data-price="30.00">$30.00</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="skincare"><img src="p3.jpg"><h3>Sleeping Mask</h3><p>Hydration mask</p><p class="price" data-price="32.50">$32.50</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="skincare"><img src="p1.jpg"><h3>Body Cream</h3><p>Moisturizer</p><p class="price" data-price="27.50">$27.50</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="skincare"><img src="p7.jpg"><h3>Face Wash</h3><p>Energizing wash</p><p class="price" data-price="4.45">$4.45</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="skincare"><img src="p4.jpg"><h3>Niacinamide Serum</h3><p>Dew drops</p><p class="price" data-price="35.00">$35.00</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-category="skincare"><img src="p6.jpg"><h3>Nexton 3in1</h3><p>Shampoo+Wash</p><p class="price" data-price="3.40">$3.40</p><button class="btn" onclick="addToCart(this)">Add to Cart</button></div>
+
+<!-- ========== Nwe 44 CARDS END ========== -->
+  
+</div> <!-- shop div close -->
+
+<a id="whatsappBtn" onclick="openCart()"
+   style="display: block; background: #25D366; color: white; text-align: center; padding: 15px; text-decoration: none; font-weight: bold; font-size: 18px; border-radius:100px; cursor: pointer; margin: 20px;">
+   📱 Order on WhatsApp
+</a>
+
+<footer style="background: #a0a0a0; color: white; text-align: center; padding: 20px; margin-top: 30px; font-weight:bold;">
+    📞 Contact: 0324-9587706 | 📍 Pakistan <br>
+    📧 mahtabawan03@gimail.com<br>
+    © 2026 My Watermelon Shop. All Rights Reserved <br>
+</footer>
+
+<script>
+  let cart = [];
+  const whatsappNumber = "923249587706";
+
+  function addToCart(button) {
+    let card = button.closest('.card');
+    let name = card.querySelector('h3').innerText;
+    let price = parseFloat(card.querySelector('.price').getAttribute('data-price'));
+
+    let item = cart.find(i => i.name === name);
+    if(item) { item.qty += 1; } else { cart.push({name: name, price: price, qty: 1}); }
+    updateCartCount();
+    alert("✅ " + name + " Cart me add ho gaya!");
+  }
+
+  function updateCartCount() {
+    let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById('cartCount').innerText = totalItems;
+  }
+
+  function openCart() {
+    if(cart.length === 0) { alert("⚠️ Cart khali hai! Pehle kuch add karo 😅"); return; }
+    let message = "Assalamualaikum! \n\nMujhe ye order karna hai:\n\n";
+    let total = 0;
+    cart.forEach(item => {
+        message += `${item.qty}x ${item.name} - $${item.price * item.qty}\n`;
+        total += item.price * item.qty;
+    });
+    message += `\nTotal: $${total}\n\nShukriya!`;
+    let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+
+  function filterCat(category, element) {
+    let cards = document.querySelectorAll('.card');
+    let buttons = document.querySelectorAll('.filters button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+    cards.forEach(card => {
+      if(category === 'all' || card.getAttribute('data-category') === category) {
+        card.style.display = "block";
+      } else { card.style.display = "none"; }
+    });
+  }
+
+  function searchProducts() {
+    let input = document.getElementById('searchInput');
+    let filter = input.value.toLowerCase();
+    let cards = document.getElementsByClassName('card');
+    for (let i = 0; i < cards.length; i++) {
+        let productName = cards[i].getElementsByTagName("h3")[0];
+        let productDesc = cards[i].getElementsByTagName("p")[0];
+        if (productName) {
+            let nameText = productName.innerText.toLowerCase();
+            let descText = productDesc.innerText.toLowerCase();
+            if (nameText.indexOf(filter) > -1 || descText.indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else { cards[i].style.display = "none"; }
+        }
+    }
+  }
+
+window.addEventListener("load", function() {
+    setTimeout(function() {
+        document.getElementById("loader").style.display = "none";
+    }, 1000);
+});
+</script>
+
+</body>
+</html>
+<script>
+  let cart = [];
+  const whatsappNumber = "923249587706";
+  function addToCart(button) {
+    let card = button.closest('.card');
+    let name = card.querySelector('h3').innerText;
+    let price = parseFloat(card.querySelector('.price').getAttribute('data-price'));
+    let item = cart.find(i => i.name === name);
+    if(item) { item.qty += 1; } else { cart.push({name: name, price: price, qty: 1}); }
+    document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+    alert("✅ " + name + " added!");
+  }
+  function openCart() {
+    if(cart.length === 0) { alert("⚠️ Cart khali hai!"); return; }
+    let message = "Order:\n\n";
+    let total = 0;
+    cart.forEach(item => {message += `${item.qty}x ${item.name} - $${item.price * item.qty}\n`;total += item.price * item.qty;});
+    message += `\nTotal: $${total}`;
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+  function filterCat(category, element) {
+    let cards = document.querySelectorAll('.card');
+    document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+    cards.forEach(card => {card.style.display = (category === 'all' || card.getAttribute('data-category') === category)? "block" : "none";});
+  }
+  window.addEventListener("load", function() {document.getElementById("loader").style.display = "none";});
+</script>
+</body>
+</html>
